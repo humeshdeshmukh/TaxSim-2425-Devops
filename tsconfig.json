@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "esnext", // Use 'esnext' for better modern features
+    "lib": ["dom", "dom.iterable", "esnext"], // Including esnext for latest features
+    "allowJs": true, // Allows JavaScript files to be imported and used
+    "skipLibCheck": true, // Skips type checking of declaration files to improve build speed
+    "strict": true, // Enables strict type checking options
+    "forceConsistentCasingInFileNames": true, // Ensures file names are consistently cased
+    "noEmit": true, // Disables emitting files during compilation (Next.js handles it)
+    "esModuleInterop": true, // Ensures compatibility between ESModules and CommonJS
+    "module": "esnext", // Use the latest ECMAScript module system
+    "moduleResolution": "node", // Resolves modules based on Node.js resolution strategy
+    "resolveJsonModule": true, // Allows importing JSON files
+    "isolatedModules": true, // Ensures that each file can be safely transpiled independently
+    "jsx": "preserve", // Use the new JSX transform for React 17+ (recommended with Next.js)
+    "incremental": true, // Enables incremental compilation for faster builds
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"] // Allows for absolute imports based on your root directory
+    }
+  },
+  "include": [
+    "next-env.d.ts", // Includes Next.js environment types
+    "**/*.ts", // Includes all TypeScript files
+    "**/*.tsx", // Includes all TypeScript JSX files
+    ".next/types/**/*.ts" // Includes type definitions for Next.js internals
+  ],
+  "exclude": [
+    "node_modules" // Excludes the node_modules folder from compilation
+  ]
+}
