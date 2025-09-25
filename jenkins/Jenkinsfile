@@ -18,7 +18,7 @@ pipeline {
       steps {
         script {
           def tag = "local-${env.BUILD_ID}"
-          sh "docker build -t ${DOCKER_REG}:${tag} -f devops/docker/Dockerfile .."
+          sh "docker build -t ${DOCKER_REG}:${tag} -f docker/Dockerfile .."
           sh "docker tag ${DOCKER_REG}:${tag} ${DOCKER_REG}:latest"
         }
       }

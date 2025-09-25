@@ -3,7 +3,7 @@ services:
   taxsim:
     build:
       context: ../..
-      dockerfile: devops/docker/Dockerfile
+      dockerfile: docker/Dockerfile
     container_name: taxsim
     environment:
       NODE_ENV: development
