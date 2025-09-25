@@ -57,6 +57,6 @@ const TaxChart: React.FC<TaxChartProps> = ({ breakdown }) => {
       <Bar data={data} options={options} />
     </div>
   );
-}
+};
 
 export default TaxChart;

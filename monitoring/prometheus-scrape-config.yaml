@@ -1,6 +1,6 @@
 # devops/monitoring/prometheus-scrape-config.yaml
 scrape_configs:
-  - job_name: 'taxsim'
+  - job_name: "taxsim"
     metrics_path: /api/metrics
     static_configs:
-      - targets: ['taxsim.default.svc.cluster.local:3000']
+      - targets: ["taxsim.default.svc.cluster.local:3000"]

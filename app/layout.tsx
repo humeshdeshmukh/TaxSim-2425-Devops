@@ -35,7 +35,10 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <head>
-        <meta name="description" content="Make beautiful websites regardless of your design experience." />
+        <meta
+          name="description"
+          content="Make beautiful websites regardless of your design experience."
+        />
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body

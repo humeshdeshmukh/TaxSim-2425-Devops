@@ -4,7 +4,12 @@
     {
       "type": "graph",
       "title": "HTTP request latency",
-      "targets": [{ "expr": "http_request_duration_seconds_bucket", "format": "time_series" }],
+      "targets": [
+        {
+          "expr": "http_request_duration_seconds_bucket",
+          "format": "time_series"
+        }
+      ],
       "gridPos": { "h": 8, "w": 24, "x": 0, "y": 0 }
     }
   ],

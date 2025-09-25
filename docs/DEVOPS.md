@@ -3,6 +3,7 @@
 This folder contains all starter DevOps artifacts to run a production-like CI/CD & infra locally using WSL + Docker + Kubernetes.
 
 ## Quickstart (WSL)
+
 1. Install prerequisites:
    - WSL2 (Ubuntu)
    - Docker Desktop (WSL backend) or docker-ce in WSL
@@ -27,8 +28,8 @@ This folder contains all starter DevOps artifacts to run a production-like CI/CD
    - Use Terraform local docker provider to build/run containers.
 
 ## Tips
+
 - Use namespaces: dev, staging, prod.
 - Use ArgoCD for GitOps sync.
 - Use Helm for templating and release management.
 - Use OPA/Gatekeeper to enforce policies.
-

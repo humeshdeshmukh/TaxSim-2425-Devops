@@ -151,7 +151,10 @@ const AdvancedTaxCalculator = () => {
             <>
               {/* Business Income */}
               <div className="mb-4">
-                <label htmlFor="businessIncome" className="block text-sm font-medium mb-1">
+                <label
+                  htmlFor="businessIncome"
+                  className="block text-sm font-medium mb-1"
+                >
                   Business Income (₹):
                 </label>
                 <input
@@ -169,7 +172,10 @@ const AdvancedTaxCalculator = () => {
 
               {/* Business Expenses */}
               <div className="mb-4">
-                <label htmlFor="businessExpenses" className="block text-sm font-medium mb-1">
+                <label
+                  htmlFor="businessExpenses"
+                  className="block text-sm font-medium mb-1"
+                >
                   Business Expenses (₹):
                 </label>
                 <input
@@ -189,7 +195,10 @@ const AdvancedTaxCalculator = () => {
             <>
               {/* Income */}
               <div className="mb-4">
-                <label htmlFor="income" className="block text-sm font-medium mb-1">
+                <label
+                  htmlFor="income"
+                  className="block text-sm font-medium mb-1"
+                >
                   Income (₹):
                 </label>
                 <input
@@ -205,7 +214,10 @@ const AdvancedTaxCalculator = () => {
 
               {/* Investment */}
               <div className="mb-4">
-                <label htmlFor="investment" className="block text-sm font-medium mb-1">
+                <label
+                  htmlFor="investment"
+                  className="block text-sm font-medium mb-1"
+                >
                   Investment (₹):
                 </label>
                 <input
@@ -223,7 +235,10 @@ const AdvancedTaxCalculator = () => {
 
           {/* Capital Gains */}
           <div className="mb-4">
-            <label htmlFor="capitalGains" className="block text-sm font-medium mb-1">
+            <label
+              htmlFor="capitalGains"
+              className="block text-sm font-medium mb-1"
+            >
               Capital Gains (₹):
             </label>
             <input
@@ -239,7 +254,10 @@ const AdvancedTaxCalculator = () => {
 
           {/* Other Income */}
           <div className="mb-4">
-            <label htmlFor="otherIncome" className="block text-sm font-medium mb-1">
+            <label
+              htmlFor="otherIncome"
+              className="block text-sm font-medium mb-1"
+            >
               Other Income (₹):
             </label>
             <input
@@ -255,7 +273,10 @@ const AdvancedTaxCalculator = () => {
 
           {/* GST Output */}
           <div className="mb-4">
-            <label htmlFor="gstOutput" className="block text-sm font-medium mb-1">
+            <label
+              htmlFor="gstOutput"
+              className="block text-sm font-medium mb-1"
+            >
               GST Output (₹):
             </label>
             <input
@@ -271,7 +292,10 @@ const AdvancedTaxCalculator = () => {
 
           {/* GST Input Tax Credit */}
           <div className="mb-4">
-            <label htmlFor="gstInputTax" className="block text-sm font-medium mb-1">
+            <label
+              htmlFor="gstInputTax"
+              className="block text-sm font-medium mb-1"
+            >
               GST Input Tax Credit (₹):
             </label>
             <input

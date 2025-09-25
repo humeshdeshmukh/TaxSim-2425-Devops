@@ -638,9 +638,9 @@ export default function HowToApply() {
           transition={{ staggerChildren: 0.3 }}
         >
           {(
-            (applicationSteps as { [key: string]: string[] })[selectedOption] || [
-              "Details not available for this option.",
-            ]
+            (applicationSteps as { [key: string]: string[] })[
+              selectedOption
+            ] || ["Details not available for this option."]
           ).map((step, index) => (
             <motion.div
               key={index}

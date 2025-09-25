@@ -140,7 +140,8 @@ export default function TaxSimulationPage() {
       <div className="text-center mb-10">
         <h1 className="text-4xl font-bold mb-4">Advanced Tax Simulation</h1>
         <p className="text-default-500 max-w-2xl mx-auto">
-          Calculate your tax liability and get a detailed breakdown of your tax components
+          Calculate your tax liability and get a detailed breakdown of your tax
+          components
         </p>
       </div>
 
@@ -151,7 +152,7 @@ export default function TaxSimulationPage() {
               <FaCalculator className="text-2xl text-primary" />
               <h2 className="text-xl font-semibold">Input Details</h2>
             </div>
-            
+
             <div className="space-y-6">
               <Input
                 type="number"
@@ -172,7 +173,10 @@ export default function TaxSimulationPage() {
               />
 
               <div className="mb-4">
-                <label htmlFor="taxRegime" className="block text-sm font-medium mb-1">
+                <label
+                  htmlFor="taxRegime"
+                  className="block text-sm font-medium mb-1"
+                >
                   Tax Regime:
                 </label>
                 <select
@@ -295,11 +299,13 @@ export default function TaxSimulationPage() {
                     {step}
                   </div>
                 ))}
-                
+
                 <Divider className="my-4" />
-                
+
                 <div className="text-center">
-                  <p className="text-sm text-default-500 mb-2">Total Tax Liability</p>
+                  <p className="text-sm text-default-500 mb-2">
+                    Total Tax Liability
+                  </p>
                   <p className="text-3xl font-bold text-primary">
                     ₹{tax.toLocaleString()}
                   </p>
@@ -329,7 +335,9 @@ export default function TaxSimulationPage() {
       {tax !== null && (
         <Card className="mt-8 p-6">
           <CardBody>
-            <h3 className="text-lg font-semibold mb-4">Suggestions to Save Tax</h3>
+            <h3 className="text-lg font-semibold mb-4">
+              Suggestions to Save Tax
+            </h3>
             <ul className="list-disc list-inside space-y-2 text-default-600">
               {suggestions.map((tip, index) => (
                 <li key={index}>{tip}</li>
@@ -343,8 +351,13 @@ export default function TaxSimulationPage() {
         <CardBody>
           <h3 className="text-lg font-semibold mb-4">Important Notes</h3>
           <ul className="list-disc list-inside space-y-2 text-default-600">
-            <li>This is a simplified tax calculator for illustration purposes</li>
-            <li>Actual tax calculations may vary based on various deductions and exemptions</li>
+            <li>
+              This is a simplified tax calculator for illustration purposes
+            </li>
+            <li>
+              Actual tax calculations may vary based on various deductions and
+              exemptions
+            </li>
             <li>Consult a tax professional for accurate tax planning</li>
           </ul>
         </CardBody>

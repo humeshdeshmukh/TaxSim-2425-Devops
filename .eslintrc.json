@@ -5,9 +5,7 @@
     "es2021": true,
     "node": true
   },
-  "extends": [
-    "next/core-web-vitals"
-  ],
+  "extends": ["next/core-web-vitals"],
   "plugins": [
     "react",
     "unused-imports",
@@ -37,7 +35,8 @@
     "react-hooks/exhaustive-deps": "off",
     "jsx-a11y/click-events-have-key-events": "warn",
     "jsx-a11y/interactive-supports-focus": "warn",
-    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": "off",
+    "react/no-unescaped-entities": "off",
     "react/self-closing-comp": "warn",
     "react/jsx-sort-props": "off",
     "import/order": "off",

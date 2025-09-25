@@ -7,11 +7,11 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/humeshdeshmukh/TaxSim-2425-devops'
+    repoURL: "https://github.com/humeshdeshmukh/TaxSim-2425-devops"
     targetRevision: HEAD
     path: devops/k8s/overlays/dev
   destination:
-    server: 'https://kubernetes.default.svc'
+    server: "https://kubernetes.default.svc"
     namespace: default
   syncPolicy:
     automated:

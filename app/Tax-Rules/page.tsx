@@ -24,34 +24,40 @@ export default function TaxRulesPage() {
         const rules: TaxRule[] = [
           {
             title: "Standard Deduction",
-            description: "A flat deduction of ₹50,000 is available to all salaried individuals under both old and new tax regimes.",
-            category: "Deductions"
+            description:
+              "A flat deduction of ₹50,000 is available to all salaried individuals under both old and new tax regimes.",
+            category: "Deductions",
           },
           {
             title: "Section 80C Investments",
-            description: "Deduction up to ₹1.5 lakh available for investments in PPF, ELSS, Life Insurance Premium, etc.",
-            category: "Deductions"
+            description:
+              "Deduction up to ₹1.5 lakh available for investments in PPF, ELSS, Life Insurance Premium, etc.",
+            category: "Deductions",
           },
           {
             title: "House Rent Allowance (HRA)",
-            description: "Tax exemption on HRA received from employer, subject to certain conditions and limits.",
-            category: "Exemptions"
+            description:
+              "Tax exemption on HRA received from employer, subject to certain conditions and limits.",
+            category: "Exemptions",
           },
           {
             title: "New Tax Regime Slabs",
-            description: "Income up to ₹3 lakh: No tax\n₹3-6 lakh: 5%\n₹6-9 lakh: 10%\n₹9-12 lakh: 15%\n₹12-15 lakh: 20%\nAbove ₹15 lakh: 30%",
-            category: "Tax Slabs"
+            description:
+              "Income up to ₹3 lakh: No tax\n₹3-6 lakh: 5%\n₹6-9 lakh: 10%\n₹9-12 lakh: 15%\n₹12-15 lakh: 20%\nAbove ₹15 lakh: 30%",
+            category: "Tax Slabs",
           },
           {
             title: "Old Tax Regime Slabs",
-            description: "Income up to ₹2.5 lakh: No tax\n₹2.5-5 lakh: 5%\n₹5-10 lakh: 20%\nAbove ₹10 lakh: 30%",
-            category: "Tax Slabs"
+            description:
+              "Income up to ₹2.5 lakh: No tax\n₹2.5-5 lakh: 5%\n₹5-10 lakh: 20%\nAbove ₹10 lakh: 30%",
+            category: "Tax Slabs",
           },
           {
             title: "Section 80D",
-            description: "Deduction for medical insurance premium up to ₹25,000 for self and family, additional ₹25,000 for parents.",
-            category: "Deductions"
-          }
+            description:
+              "Deduction for medical insurance premium up to ₹25,000 for self and family, additional ₹25,000 for parents.",
+            category: "Deductions",
+          },
         ];
         setTaxRules(rules);
         setLoading(false);
@@ -67,8 +73,8 @@ export default function TaxRulesPage() {
   const categories = ["All", "Deductions", "Exemptions", "Tax Slabs"];
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const filteredRules = taxRules.filter(rule => 
-    selectedCategory === "All" ? true : rule.category === selectedCategory
+  const filteredRules = taxRules.filter((rule) =>
+    selectedCategory === "All" ? true : rule.category === selectedCategory,
   );
 
   if (loading) {
@@ -96,23 +102,26 @@ export default function TaxRulesPage() {
           <h1 className="text-4xl font-bold">Tax Rules and Guidelines</h1>
         </div>
         <p className="text-default-500 max-w-2xl mx-auto">
-          Understanding tax rules is crucial for effective tax planning. Here's a comprehensive guide to help you navigate through various tax provisions.
+          Understanding tax rules is crucial for effective tax planning. Here's
+          a comprehensive guide to help you navigate through various tax
+          provisions.
         </p>
       </div>
 
       <Card className="mb-8">
         <CardBody>
-          <Tabs 
+          <Tabs
             aria-label="Tax Categories"
             selectedKey={selectedCategory}
             onSelectionChange={(key) => setSelectedCategory(key as string)}
             color="primary"
             variant="underlined"
             classNames={{
-              tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider",
+              tabList:
+                "gap-6 w-full relative rounded-none p-0 border-b border-divider",
               cursor: "w-full bg-primary",
               tab: "max-w-fit px-0 h-12",
-              tabContent: "group-data-[selected=true]:text-primary"
+              tabContent: "group-data-[selected=true]:text-primary",
             }}
           >
             {categories.map((category) => (
@@ -139,13 +148,17 @@ export default function TaxRulesPage() {
                 <div className="flex items-center gap-2">
                   <FaQuestionCircle className="text-primary" />
                   <span className="font-semibold">{rule.title}</span>
-                  <span className="ml-auto text-small text-default-400">{rule.category}</span>
+                  <span className="ml-auto text-small text-default-400">
+                    {rule.category}
+                  </span>
                 </div>
               }
             >
               <div className="px-2 py-4">
-                {rule.description.split('\n').map((line, i) => (
-                  <p key={i} className="mb-2">{line}</p>
+                {rule.description.split("\n").map((line, i) => (
+                  <p key={i} className="mb-2">
+                    {line}
+                  </p>
                 ))}
               </div>
             </AccordionItem>
@@ -162,8 +175,9 @@ export default function TaxRulesPage() {
         </CardHeader>
         <CardBody>
           <p className="text-default-600">
-            Tax rules and regulations are subject to change. The information provided here is for general guidance only. 
-            Please consult with a tax professional for advice specific to your situation.
+            Tax rules and regulations are subject to change. The information
+            provided here is for general guidance only. Please consult with a
+            tax professional for advice specific to your situation.
           </p>
         </CardBody>
       </Card>

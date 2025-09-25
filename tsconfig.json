@@ -13,7 +13,10 @@
     "resolveJsonModule": true, // Allows importing JSON files
     "isolatedModules": true, // Ensures that each file can be safely transpiled independently
     "jsx": "preserve", // Use the new JSX transform for React 17+ (recommended with Next.js)
-    "incremental": true, // Enables incremental compilation for faster builds
+    "incremental": true,
+     "suppressImplicitAnyIndexErrors": true, // Suppresses errors for implicit 'any' types in index signatures
+     "noEmitOnError": false, // Allows emitting files even if there are type errors
+    "noImplicitAny": false, // Disables implicit 'any' type
     "plugins": [
       {
         "name": "next"

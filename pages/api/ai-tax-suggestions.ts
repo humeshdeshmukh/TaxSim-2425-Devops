@@ -1,10 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     const {
       income,
@@ -25,11 +22,9 @@ export default async function handler(
 
     // Tax-saving suggestions based on income slab
     if (income <= 250000) {
-      suggestions +=
-        "1. Your income falls within the exempt category. No tax is payable.\n";
+      suggestions += "1. Your income falls within the exempt category. No tax is payable.\n";
     } else if (income <= 500000) {
-      suggestions +=
-        "1. You can avail of the rebate under Section 87A to reduce your tax liability.\n";
+      suggestions += "1. You can avail of the rebate under Section 87A to reduce your tax liability.\n";
     } else if (income <= 1000000) {
       suggestions += `1. Consider investing in tax-saving instruments under Section 80C (₹1.5 lakh limit), such as:\n   - Public Provident Fund (PPF)\n   - Equity-Linked Savings Scheme (ELSS)\n   - National Savings Certificate (NSC)\n`;
       if (insurancePremiums) {
@@ -107,11 +102,7 @@ export default async function handler(
     // Tax-loss Harvesting
     suggestions += `20. Engage in tax-loss harvesting to offset gains by selling investments that are in a loss position. This strategy can help minimize your taxable capital gains.\n`;
 
-    try {
-      res.status(200).json({ suggestions });
-    } catch (error) {
-      res.status(500).json({ error: "Failed to generate tax suggestions" });
-    }
+    res.status(200).json({ suggestions });
   } else {
     res.status(405).json({ error: "Method not allowed" });
   }

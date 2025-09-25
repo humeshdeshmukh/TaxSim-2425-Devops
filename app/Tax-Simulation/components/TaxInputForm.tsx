@@ -73,7 +73,10 @@ export default function TaxInputForm({
       {taxRegime === "old" && (
         <>
           <div className="mb-4">
-            <label htmlFor="section80C" className="block text-sm font-medium mb-1">
+            <label
+              htmlFor="section80C"
+              className="block text-sm font-medium mb-1"
+            >
               Section 80C Deductions (₹):
             </label>
             <input
@@ -93,7 +96,10 @@ export default function TaxInputForm({
           </div>
 
           <div className="mb-4">
-            <label htmlFor="section80D" className="block text-sm font-medium mb-1">
+            <label
+              htmlFor="section80D"
+              className="block text-sm font-medium mb-1"
+            >
               Section 80D Deductions (₹):
             </label>
             <input
@@ -113,7 +119,10 @@ export default function TaxInputForm({
           </div>
 
           <div className="mb-4">
-            <label htmlFor="section80E" className="block text-sm font-medium mb-1">
+            <label
+              htmlFor="section80E"
+              className="block text-sm font-medium mb-1"
+            >
               Section 80E Deductions (₹):
             </label>
             <input
@@ -133,7 +142,10 @@ export default function TaxInputForm({
           </div>
 
           <div className="mb-4">
-            <label htmlFor="homeLoan" className="block text-sm font-medium mb-1">
+            <label
+              htmlFor="homeLoan"
+              className="block text-sm font-medium mb-1"
+            >
               Home Loan Interest Deductions (₹):
             </label>
             <input
