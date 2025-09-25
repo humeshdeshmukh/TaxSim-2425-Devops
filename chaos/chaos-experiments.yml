@@ -1,0 +1,18 @@
+# devops/chaos/chaos-experiment.yaml
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: taxsim-chaos
+  namespace: default
+spec:
+  appinfo:
+    appns: default
+    applabel: app=taxsim
+    appkind: deployment
+  chaosServiceAccount: litmus
+  experiments:
+    - name: pod-delete
+      components:
+        env:
+          - name: TOTAL_CHAOS_DURATION
+            value: "60"

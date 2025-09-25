@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taxsim
+spec:
+  template:
+    spec:
+      containers:
+      - name: taxsim
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: LOG_LEVEL
+            value: debug

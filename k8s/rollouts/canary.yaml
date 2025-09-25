@@ -1,0 +1,28 @@
+# devops/k8s/rollouts/canary.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: taxsim-rollout
+spec:
+  replicas: 3
+  strategy:
+    canary:
+      steps:
+        - setWeight: 20
+        - pause: { duration: 60s }
+        - setWeight: 50
+        - pause: { duration: 60s }
+        - setWeight: 100
+  selector:
+    matchLabels:
+      app: taxsim
+  template:
+    metadata:
+      labels:
+        app: taxsim
+    spec:
+      containers:
+        - name: taxsim
+          image: humesh/taxsim:canary
+          ports:
+            - containerPort: 3000

@@ -1,0 +1,26 @@
+# devops/sonarqube/docker-compose.yml
+version: "3.8"
+services:
+  sonarqube:
+    image: sonarqube:9.9-community
+    ports:
+      - "9000:9000"
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+    volumes:
+      - sonarqube-data:/opt/sonarqube/data
+      - sonarqube-logs:/opt/sonarqube/logs
+      - sonarqube-extensions:/opt/sonarqube/extensions
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonar
+      POSTGRES_DB: sonarqube
+    volumes:
+      - db-data:/var/lib/postgresql/data
+volumes:
+  sonarqube-data:
+  sonarqube-logs:
+  sonarqube-extensions:
+  db-data:

@@ -1,0 +1,14 @@
+# devops/linux/systemd/taxsim.service
+[Unit]
+Description=TaxSim Docker container service
+After=docker.service
+Requires=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker run --rm --name taxsim -p 3000:3000 humesh/taxsim:latest
+ExecStop=/usr/bin/docker stop taxsim
+TimeoutStartSec=120
+
+[Install]
+WantedBy=multi-user.target

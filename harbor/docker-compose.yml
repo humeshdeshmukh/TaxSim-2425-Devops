@@ -1,0 +1,14 @@
+# devops/harbor/docker-compose.yml
+version: "3.8"
+services:
+  harbor:
+    image: goharbor/harbor-core:v2.9.0
+    ports:
+      - "8080:8080"
+    environment:
+      CORE_SECRET: "changeMeSecret"
+      DATABASE_PASSWORD: "changeMePassword"
+    volumes:
+      - harbor-data:/data
+volumes:
+  harbor-data:

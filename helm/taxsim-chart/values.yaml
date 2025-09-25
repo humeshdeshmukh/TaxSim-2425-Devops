@@ -1,0 +1,13 @@
+replicaCount: 2
+image:
+  repository: humesh/taxsim
+  tag: latest
+service:
+  type: ClusterIP
+  port: 80
+resources: {}
+ingress:
+  enabled: true
+  hosts:
+    - taxsim.local
+  annotations: {}

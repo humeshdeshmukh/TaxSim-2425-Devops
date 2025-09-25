@@ -1,0 +1,24 @@
+# devops/k8s/tls/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: taxsim-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+spec:
+  tls:
+    - hosts:
+        - taxsim.local
+      secretName: taxsim-tls
+  rules:
+    - host: taxsim.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: taxsim
+                port:
+                  number: 80

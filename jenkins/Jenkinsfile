@@ -1,0 +1,40 @@
+// devops/jenkins/Jenkinsfile
+pipeline {
+  agent any
+  environment {
+    DOCKER_REG = "humesh/taxsim"
+  }
+  stages {
+    stage('Checkout') { steps { checkout scm } }
+   stage('Install') {
+  steps {
+    sh 'npm install --legacy-peer-deps'
+  }
+}
+
+    stage('Lint & Test') { steps { sh 'npm run lint || true'; sh 'npm test || true' } }
+    stage('Build') { steps { sh 'npm run build' } }
+    stage('Docker Build') {
+      steps {
+        script {
+          def tag = "local-${env.BUILD_ID}"
+          sh "docker build -t ${DOCKER_REG}:${tag} -f devops/docker/Dockerfile .."
+          sh "docker tag ${DOCKER_REG}:${tag} ${DOCKER_REG}:latest"
+        }
+      }
+    }
+    stage('Trivy Scan') {
+      steps {
+        sh 'trivy image --severity HIGH,CRITICAL --exit-code 1 humesh/taxsim:latest || true'
+      }
+    }
+    stage('Deploy (k8s)') {
+      steps {
+        sh 'kubectl apply -f devops/k8s/overlays/dev --recursive || true'
+      }
+    }
+  }
+  post {
+    always { archiveArtifacts artifacts: 'reports/**/*.xml', allowEmptyArchive: true }
+  }
+}

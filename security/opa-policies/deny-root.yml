@@ -1,0 +1,19 @@
+# devops/security/opa-policies/deny-root.yaml
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8sdenyroot
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sDenyRoot
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8sdenyroot
+        violation[{"msg": msg}] {
+          container := input.review.object.spec.template.spec.containers[_]
+          container.securityContext.runAsNonRoot == false
+          msg := sprintf("container %v runs as root", [container.name])
+        }

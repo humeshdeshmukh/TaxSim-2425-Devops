@@ -1,0 +1,6 @@
+# devops/security/falco-rules.yaml
+- rule: Terminal shell in container
+  desc: A shell was spawned in a container, this could be an indicator of container breakout.
+  condition: spawned_process and container
+  output: Shell spawned in container (user=%user.name container=%container.id image=%container.image)
+  priority: WARNING

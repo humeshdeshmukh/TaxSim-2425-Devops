@@ -1,0 +1,9 @@
+# devops/monitoring/prometheus-values.yaml
+alertmanager:
+  enabled: true
+server:
+  global:
+    scrape_interval: 15s
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false

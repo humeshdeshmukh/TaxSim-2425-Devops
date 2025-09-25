@@ -1,0 +1,7 @@
+# devops/k8s/overlays/dev/kustomization.yml
+resources:
+  - ../../base/deployment.yml
+  - ../../base/service.yml
+
+patchesStrategicMerge:
+  - deployment-patch.yml

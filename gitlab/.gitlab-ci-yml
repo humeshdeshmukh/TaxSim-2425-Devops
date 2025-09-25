@@ -1,0 +1,48 @@
+# devops/gitlab/.gitlab-ci.yml
+stages:
+  - lint
+  - test
+  - build
+  - scan
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+  IMAGE: "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"
+
+lint:
+  stage: lint
+  script:
+    - npm install --legacy-peer-deps
+    - npm run lint
+  tags: [docker]
+
+test:
+  stage: test
+  script:
+    - npm test
+  tags: [docker]
+
+build:
+  stage: build
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -t $IMAGE -f devops/docker/Dockerfile .
+    - docker push $IMAGE
+  tags: [docker]
+  only:
+    - main
+    - develop
+
+scan:
+  stage: scan
+  script:
+    - trivy image --severity HIGH,CRITICAL --exit-code 1 $IMAGE || true
+  tags: [docker]
+
+deploy:
+  stage: deploy
+  script:
+    - kubectl apply -k devops/k8s/overlays/dev
+  when: manual
+  tags: [kubernetes]

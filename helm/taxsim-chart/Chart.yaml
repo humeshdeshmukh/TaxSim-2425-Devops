@@ -1,0 +1,7 @@
+# devops/helm/taxsim-chart/Chart.yaml
+apiVersion: v2
+name: taxsim
+description: TaxSim Helm chart
+type: application
+version: 0.1.0
+appVersion: "1.0"

@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  taxsim:
+    build:
+      context: ../..
+      dockerfile: devops/docker/Dockerfile
+    container_name: taxsim
+    environment:
+      NODE_ENV: development
+    ports:
+      - "3000:3000"

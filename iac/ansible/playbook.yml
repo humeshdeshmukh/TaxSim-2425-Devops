@@ -1,0 +1,28 @@
+# devops/iac/ansible/playbook.yml
+- hosts: all
+  become: true
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+    - name: Install docker prerequisites
+      apt:
+        name:
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+        state: present
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+    - name: Ensure docker started
+      service:
+        name: docker
+        state: started
+        enabled: true
+    - name: Install kubectl
+      apt:
+        name: kubectl
+        state: present
