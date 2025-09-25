@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: taxsim
-  labels:
-    app: taxsim
 spec:
   replicas: 2
   selector:
@@ -16,18 +14,7 @@ spec:
     spec:
       containers:
         - name: taxsim
-          image: humeshdeshmukh/taxsim:dev   # Docker Hub image
+          image: humeshdeshmukh/taxsim:dev
           ports:
             - containerPort: 3000
-          readinessProbe:
-            httpGet:
-              path: /api/health
-              port: 3000
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /api/health
-              port: 3000
-            initialDelaySeconds: 10
-            periodSeconds: 30
+          # 🔴 remove readinessProbe and livenessProbe for now
