@@ -1,13 +1,9 @@
-name: CI/CD Pipeline
+name: CI/CD Pipeline (Local Minikube)
 
 on:
   push:
     branches:
       - main
-
-env:
-  REGISTRY: docker.io
-  IMAGE_NAME: humeshdeshmukh/taxsim
 
 jobs:
   build:
@@ -28,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      # Run tests (optional: add real tests here later)
+      # Run tests / build check
       - name: Run tests
         run: npm run build
 
@@ -40,47 +36,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Login to Docker Hub
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
+      # Setup Minikube
+      - name: Start Minikube
+        uses: medyagh/setup-minikube@latest
         with:
-         username: ${{ secrets.DOCKERHUB_USERNAME }}
-         password: ${{ secrets.DOCKERHUB_TOKEN }}
+          kubernetes-version: v1.34.0
 
-
-      # Build and push Docker image
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: docker/Dockerfile
-          push: true
-          tags: |
-           docker.io/${{ secrets.DOCKERHUB_USERNAME }}/taxsim:latest
-           docker.io/${{ secrets.DOCKERHUB_USERNAME }}/taxsim:${{ github.sha }}
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: docker
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      # Setup kubectl
-      - name: Set up kubectl
-        uses: azure/setup-kubectl@v3
-        with:
-          version: v1.34.0
-
-      # Configure kubeconfig
-      - name: Configure kubeconfig
+      # Build image directly into Minikube
+      - name: Build Docker image in Minikube
         run: |
-          mkdir -p ~/.kube
-          echo "${{ secrets.KUBECONFIG_CONTENT }}" > ~/.kube/config
+          minikube image build -t taxsim:latest -f docker/Dockerfile .
 
-      # Update Kubernetes deployment
+      # Deploy to Kubernetes
       - name: Deploy to Kubernetes
         run: |
-          kubectl set image deployment/taxsim taxsim=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          kubectl set image deployment/taxsim taxsim=taxsim:latest
           kubectl rollout status deployment/taxsim
