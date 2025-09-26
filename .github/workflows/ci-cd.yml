@@ -47,8 +47,15 @@ jobs:
         run: |
           minikube image build -t taxsim:latest -f docker/Dockerfile .
 
-      # Deploy to Kubernetes
-      - name: Deploy to Kubernetes
+      # Deploy manifests if not already applied
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/base/deployment.yml
+          kubectl apply -f k8s/base/service.yml
+          kubectl apply -f k8s/base/ingress.yml
+
+      # Update image in deployment
+      - name: Update deployment with new image
         run: |
           kubectl set image deployment/taxsim taxsim=taxsim:latest
           kubectl rollout status deployment/taxsim
