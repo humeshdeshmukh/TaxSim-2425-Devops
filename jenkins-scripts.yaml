@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jenkins-scripts
+data:
+  init.groovy: |
+    import jenkins.model.*
+    println "✅ Jenkins Groovy init script executed"

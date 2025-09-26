@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jenkins-config
+data:
+  jenkins.yaml: |
+    jenkins:
+      systemMessage: "Welcome to Jenkins on Kubernetes!"
+      numExecutors: 2
+      remotingSecurity:
+        enabled: true

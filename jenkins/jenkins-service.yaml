@@ -1,0 +1,55 @@
+apiVersion: jenkins.io/v1alpha2
+kind: Jenkins
+metadata:
+  name: jenkins
+spec:
+  master:
+    disableCSRFProtection: true
+    containers:
+      - name: jenkins-master
+        image: jenkins/jenkins:lts
+        imagePullPolicy: Always
+        ports:
+          - name: http
+            containerPort: 8080
+          - name: agent
+            containerPort: 50000
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+          limits:
+            cpu: "1000m"
+            memory: "1Gi"
+    securityContext:
+      runAsUser: 1000
+      fsGroup: 1000
+
+  jenkinsAPISettings:
+    authorizationStrategy: createUser
+
+  configurationAsCode:
+    configurations:
+      - name: jenkins-config
+
+  groovyScripts:
+    configurations:
+      - name: jenkins-scripts
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jenkins-config
+data:
+  jenkins.yaml: |
+    jenkins:
+      systemMessage: "Welcome to Jenkins running on Kubernetes via Operator!"
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jenkins-scripts
+data:
+  welcome.groovy: |
+    println "Jenkins Groovy Init Script Loaded!"
