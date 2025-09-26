@@ -1,5 +1,29 @@
 pipeline {
-    agent any
+    agent {
+        kubernetes {
+            yaml """
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+    - name: node
+      image: node:18
+      command:
+      - cat
+      tty: true
+    - name: docker
+      image: docker:20.10-dind
+      securityContext:
+        privileged: true
+      volumeMounts:
+        - name: dind-storage
+          mountPath: /var/lib/docker
+  volumes:
+    - name: dind-storage
+      emptyDir: {}
+"""
+        }
+    }
 
     environment {
         IMAGE_NAME = "taxsim:latest"
@@ -15,29 +39,35 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh '''
-                echo "Installing project dependencies..."
-                npm install --legacy-peer-deps
-                '''
+                container('node') {
+                    sh '''
+                    echo "Installing project dependencies..."
+                    npm install --legacy-peer-deps
+                    '''
+                }
             }
         }
 
         stage('Build App') {
             steps {
-                sh '''
-                echo "Running build..."
-                npm run build
-                '''
+                container('node') {
+                    sh '''
+                    echo "Running build..."
+                    npm run build
+                    '''
+                }
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh '''
-                echo "Building Docker image inside Minikube..."
-                eval $(minikube docker-env)
-                docker build -t $IMAGE_NAME -f docker/Dockerfile .
-                '''
+                container('docker') {
+                    sh '''
+                    echo "Building Docker image inside Minikube..."
+                    eval $(minikube docker-env)
+                    docker build -t $IMAGE_NAME -f docker/Dockerfile .
+                    '''
+                }
             }
         }
 
